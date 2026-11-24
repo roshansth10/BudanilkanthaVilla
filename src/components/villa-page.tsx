@@ -65,28 +65,14 @@ function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <a
       href="#home"
-      className="flex shrink-0 items-center gap-3 text-cream"
+      className="flex shrink-0 items-center text-cream"
       aria-label="Budhanilkantha Villa home"
     >
-      <span className="grid size-9 place-items-center border border-gold/60 text-gold">
-        <Leaf size={19} strokeWidth={1.5} />
-      </span>
-      <span
-        className={
-          compact
-            ? "font-serif text-base"
-            : "text-[11px] font-medium leading-[1.15] tracking-[0.18em]"
-        }
-      >
-        {compact ? (
-          "Budhanilkantha Villa"
-        ) : (
-          <>
-            <span className="block">BUDHANILKANTHA</span>
-            <span className="block text-gold">VILLA</span>
-          </>
-        )}
-      </span>
+      <img
+        src="/images/BV%20logo.png"
+        alt="Budhanilkantha Villa"
+        className={compact ? "h-8 w-auto object-contain brightness-0 invert" : "h-10 w-auto object-contain brightness-0 invert"}
+      />
     </a>
   );
 }

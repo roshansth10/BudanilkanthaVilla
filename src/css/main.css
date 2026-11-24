@@ -471,34 +471,32 @@ ul, ol {
 }
 
 .brand-mark {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1;
 }
 
-.brand-title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.15rem, 1.4vw, 1.45rem);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 500;
-  line-height: 1.1;
-}
-
-.brand-subtitle {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold-light-text);
-  font-weight: 600;
-  line-height: 1.3;
-  margin-top: 2px;
+.brand-logo-img {
+  height: clamp(38px, 4.2vw, 48px);
+  width: auto;
+  max-width: 170px;
+  object-fit: contain;
   display: block;
+  /* On dark header (over hero image), filter to crisp white/paper matching nav links */
+  filter: brightness(0) invert(1);
+  transition: filter 0.4s var(--ease-editorial), opacity 0.3s ease, transform 0.3s var(--ease-editorial);
 }
 
-.site-header.is-scrolled .brand-subtitle {
-  color: var(--gold);
+.brand-mark:hover .brand-logo-img {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* On scrolled header or light theme pages, display in its original rich dark forest green */
+.site-header.is-scrolled .brand-logo-img,
+.site-header.theme-light .brand-logo-img {
+  filter: none;
 }
 
 .nav-menu {
