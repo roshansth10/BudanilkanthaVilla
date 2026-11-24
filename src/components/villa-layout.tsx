@@ -102,26 +102,41 @@ export function Navbar() {
 export function Footer() {
   return (
     <footer className="bg-near-black py-7 text-cream/60">
-      <div className="mx-auto grid max-w-7xl items-center gap-6 px-5 text-center text-xs md:grid-cols-3 md:text-left lg:px-8">
-        <Brand compact />
-        <p className="md:text-center">© 2026 Budhanilkantha Villa. All rights reserved.</p>
-        <div className="flex flex-wrap items-center justify-center gap-4 md:justify-end">
-          <a href="/" className="hover:text-gold">
-            Privacy Policy
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="footer-wordmark-wrap my-6 w-full overflow-hidden">
+          <a
+            href="/"
+            className="footer-giant-wordmark-link block w-full text-center outline-none"
+            aria-label="Go to home page"
+          >
+            <div className="footer-giant-wordmark flex select-none justify-center">
+              <span className="wordmark-word wordmark-word-1">BUDHANILKANTHA</span>
+              <span className="wordmark-space">&nbsp;</span>
+              <span className="wordmark-word wordmark-word-2">VILLA</span>
+            </div>
           </a>
-          <a href="/" className="hover:text-gold">
-            Terms &amp; Conditions
-          </a>
-          <span className="h-4 w-px bg-cream/20" />
-          <a href="/" aria-label="Facebook" className="hover:text-gold">
-            <Facebook size={16} />
-          </a>
-          <a href="/" aria-label="Instagram" className="hover:text-gold">
-            <Instagram size={16} />
-          </a>
-          <a href="/" aria-label="WhatsApp" className="hover:text-gold">
-            <MessageCircle size={16} />
-          </a>
+        </div>
+        <div className="grid items-center gap-6 border-t border-cream/10 pt-6 text-center text-xs md:grid-cols-3 md:text-left">
+          <Brand compact />
+          <p className="md:text-center">© 2026 Budhanilkantha Villa. All rights reserved.</p>
+          <div className="flex flex-wrap items-center justify-center gap-4 md:justify-end">
+            <a href="/" className="hover:text-gold">
+              Privacy Policy
+            </a>
+            <a href="/" className="hover:text-gold">
+              Terms &amp; Conditions
+            </a>
+            <span className="h-4 w-px bg-cream/20" />
+            <a href="/" aria-label="Facebook" className="hover:text-gold">
+              <Facebook size={16} />
+            </a>
+            <a href="/" aria-label="Instagram" className="hover:text-gold">
+              <Instagram size={16} />
+            </a>
+            <a href="/" aria-label="WhatsApp" className="hover:text-gold">
+              <MessageCircle size={16} />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

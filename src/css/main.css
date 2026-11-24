@@ -2178,7 +2178,7 @@ ul, ol {
 
 .footer-giant-wordmark {
   font-family: var(--font-serif);
-  font-size: clamp(1.85rem, 8.2vw, 10.2rem);
+  font-size: clamp(1.6rem, 5.75vw, 6.8rem);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: -0.015em;
@@ -2186,9 +2186,19 @@ ul, ol {
   -webkit-text-stroke: 1px rgba(244, 241, 234, 0.14);
   white-space: nowrap;
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: baseline;
   user-select: none;
   transform: none;
+  transition: color 0.35s ease, -webkit-text-stroke-color 0.35s ease;
+  width: 100%;
+  max-width: 100%;
+}
+
+.footer-giant-wordmark .wordmark-word {
+  display: inline-flex;
+  white-space: nowrap;
   transition: color 0.35s ease, -webkit-text-stroke-color 0.35s ease;
 }
 
@@ -2197,10 +2207,48 @@ ul, ol {
   will-change: transform;
 }
 
+.footer-giant-wordmark .wordmark-space {
+  display: inline-block;
+  width: 0.28em;
+  will-change: transform;
+}
+
 .footer-giant-wordmark-link:hover .footer-giant-wordmark,
 .footer-giant-wordmark-link:focus-visible .footer-giant-wordmark {
   color: rgba(176, 141, 87, 0.35);
   -webkit-text-stroke-color: rgba(176, 141, 87, 0.65);
+}
+
+@media (max-width: 640px) {
+  .footer-giant-wordmark {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    white-space: normal;
+    line-height: 0.95;
+  }
+
+  .footer-giant-wordmark .wordmark-space {
+    display: none;
+  }
+
+  .footer-giant-wordmark .wordmark-word-1 {
+    font-size: clamp(1.6rem, 8.2vw, 3.2rem);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+
+  .footer-giant-wordmark .wordmark-word-2 {
+    font-size: clamp(3.8rem, 20.5vw, 8.5rem);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    line-height: 0.9;
+    letter-spacing: 0.03em;
+  }
 }
 
 /* Footer Bottom Bar */

@@ -404,15 +404,26 @@ export function initFooterAnimations(container, lenis) {
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // 1. Giant Wordmark Chars Reveal
+  // 1. Giant Wordmark Chars Reveal & Responsive Fit
   const wordmark = footer.querySelector('.footer-giant-wordmark');
   if (wordmark) {
-    const text = wordmark.textContent.trim();
-    wordmark.innerHTML = text
-      .split('')
-      .map((c) => `<span>${c}</span>`)
-      .join('');
-    const chars = Array.from(wordmark.querySelectorAll('span'));
+    const wordEls = wordmark.querySelectorAll('.wordmark-word');
+    if (wordEls.length) {
+      wordEls.forEach((wordEl) => {
+        const text = wordEl.textContent.trim();
+        wordEl.innerHTML = text
+          .split('')
+          .map((c) => `<span class="wordmark-char">${c}</span>`)
+          .join('');
+      });
+    } else {
+      const text = wordmark.textContent.trim();
+      wordmark.innerHTML = text
+        .split('')
+        .map((c) => (c === ' ' ? '<span class="wordmark-space">&nbsp;</span>' : `<span class="wordmark-char">${c}</span>`))
+        .join('');
+    }
+    const chars = Array.from(wordmark.querySelectorAll('.wordmark-char'));
 
     if (prefersReduced) {
       gsap.set(chars, { yPercent: 0, opacity: 1 });
@@ -440,6 +451,9 @@ export function initFooterAnimations(container, lenis) {
         gsap.to(chars, { yPercent: 0, opacity: 1, duration: 0.5, overwrite: 'auto' });
       }, 2500);
     }
+
+    // Dynamic fit to width on resize
+    initFooterWordmarkFit(footer);
   }
 
   // 2. Footer Invitation Headline
@@ -477,6 +491,53 @@ export function initFooterAnimations(container, lenis) {
       }
     });
   }
+}
+
+/**
+ * Fit wordmark dynamically to container width on desktop & mobile
+ */
+function initFooterWordmarkFit(footer) {
+  const wordmark = footer.querySelector('.footer-giant-wordmark');
+  const wrap = footer.querySelector('.footer-wordmark-wrap');
+  if (!wordmark || !wrap) return;
+
+  function adjustFit() {
+    const avail = wrap.clientWidth;
+    if (!avail) return;
+    const isMobile = window.innerWidth <= 640;
+    if (!isMobile) {
+      wordmark.style.transform = 'none';
+      const current = wordmark.scrollWidth;
+      if (current > avail) {
+        const scale = (avail - 4) / current;
+        wordmark.style.transform = `scale(${Math.min(1, scale)})`;
+        wordmark.style.transformOrigin = 'center center';
+      }
+    } else {
+      wordmark.style.transform = 'none';
+      const w1 = wordmark.querySelector('.wordmark-word-1');
+      const w2 = wordmark.querySelector('.wordmark-word-2');
+      if (w1) {
+        w1.style.transform = 'none';
+        if (w1.scrollWidth > avail) {
+          const s1 = (avail - 4) / w1.scrollWidth;
+          w1.style.transform = `scale(${Math.min(1, s1)})`;
+          w1.style.transformOrigin = 'center center';
+        }
+      }
+      if (w2) {
+        w2.style.transform = 'none';
+        if (w2.scrollWidth > avail) {
+          const s2 = (avail - 4) / w2.scrollWidth;
+          w2.style.transform = `scale(${Math.min(1, s2)})`;
+          w2.style.transformOrigin = 'center center';
+        }
+      }
+    }
+  }
+
+  adjustFit();
+  window.addEventListener('resize', adjustFit, { passive: true });
 }
 
 /**
