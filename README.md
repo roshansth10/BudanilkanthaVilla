@@ -227,15 +227,6 @@ I want you to build the **Budhanilkantha Villa** landing page using these exact 
 
 Generate the complete code for `app/page.tsx` and the required components (Navbar, Hero, StatStrip, About, Amenities, Gallery, LocationBooking, Footer). Ensure all Tailwind classes use the exact hex colors provided. Do not generate other pages (About, Gallery, Contact, etc.)—just this homepage.
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/e05f6044-03a0-4b0d-95c9-e11b94bbdd8d).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
